@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}{{ author.name }}{% endblock %}
+{% block content %}
+<a href="{% url 'author-list-page' %}">← Mualliflar ro‘yxati</a><h1>{{ author.name }}</h1>
+<div class="actions"><a class="button" href="{% url 'author-edit-page' author.pk %}">Tahrirlash</a><a class="button secondary" href="{% url 'author-delete-page' author.pk %}">O‘chirish</a></div>
+<h2>Muallifning kitoblari</h2><div class="grid">{% for book in books %}<article class="card"><h2><a href="{% url 'book-detail-page' book.pk %}">{{ book.title }}</a></h2><span class="badge">{% if book.published %}Nashr qilingan{% else %}Nashr qilinmagan{% endif %}</span></article>{% empty %}<div class="empty">Bu muallifga hali kitob bog‘lanmagan.</div>{% endfor %}</div>
+{% endblock %}

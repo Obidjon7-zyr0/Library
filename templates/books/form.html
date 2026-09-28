@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}{{ heading }}{% endblock %}
+{% block content %}
+<a href="{% url back_url %}">← Ro‘yxatga qaytish</a><h1>{{ heading }}</h1>
+<form method="post" class="panel">{% csrf_token %}{{ form.non_field_errors }}
+{% for field in form %}<div class="field">{{ field.label_tag }}{{ field }}{{ field.errors }}{% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}</div>{% endfor %}
+<div class="actions"><button type="submit">Saqlash</button><a href="{% url back_url %}">Bekor qilish</a></div></form>
+{% if is_book %}<p>Muallif ro‘yxatda yo‘qmi? <a href="{% url 'author-add-page' %}">Avval muallif qo‘shing.</a></p>{% endif %}
+{% endblock %}

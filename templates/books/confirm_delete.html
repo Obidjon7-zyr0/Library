@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}{{ kind }}ni o‘chirish{% endblock %}
+{% block content %}
+<a href="{% url back_url object.pk %}">← Ortga qaytish</a><h1>{{ kind }}ni o‘chirish</h1>
+<div class="panel">{% if blocked %}<p class="error" role="alert">“{{ object }}” muallifiga kitoblar bog‘langan. Uni o‘chirib bo‘lmaydi.</p><p>Avval kitoblarni boshqa muallifga bog‘lang yoki tegishli kitoblarni o‘chiring.</p><a class="button" href="{% url back_url object.pk %}">Muallifga qaytish</a>
+{% else %}<p>“{{ object }}”ni o‘chirishni tasdiqlaysizmi? Bu amalni sahifa orqali qaytarib bo‘lmaydi.</p><form method="post">{% csrf_token %}<div class="actions"><button class="danger" type="submit">Ha, o‘chirish</button><a href="{% url back_url object.pk %}">Bekor qilish</a></div></form>{% endif %}</div>
+{% endblock %}

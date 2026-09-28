@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Kitoblar{% endblock %}
+{% block content %}
+<p class="muted">SHAХSIY KITOB JAVONINGIZ</p>
+<div class="heading"><h1>Kitoblar ro‘yxati</h1><a class="button" href="{% url 'book-add-page' %}">+ Kitob qo‘shish</a></div>
+<p class="muted">Kitoblarni kashf eting va kutubxonangizni boyiting.</p>
+<form class="search" method="get" role="search"><input type="search" name="q" value="{{ query }}" aria-label="Kitob yoki muallifni qidirish" placeholder="Kitob yoki muallif nomi…"><button>Qidirish</button>{% if query %}<a href="{% url 'book-page' %}">Tozalash</a>{% endif %}</form>
+<div class="grid">{% for book in books %}
+<article class="card"><span class="badge">{% if book.published %}Nashr qilingan{% else %}Nashr qilinmagan{% endif %}</span><h2><a href="{% url 'book-detail-page' book.pk %}">{{ book.title }}</a></h2><p class="muted">{{ book.author.name|default:'Muallif tanlanmagan' }}</p><a href="{% url 'book-detail-page' book.pk %}">Batafsil →</a></article>
+{% empty %}<div class="empty">{% if query %}Mos kitob topilmadi.{% else %}Hozircha kitob yo‘q. Birinchi kitobingizni qo‘shing.{% endif %}</div>{% endfor %}</div>
+{% endblock %}

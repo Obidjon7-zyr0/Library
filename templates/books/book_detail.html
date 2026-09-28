@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}{{ book.title }}{% endblock %}
+{% block content %}
+<a href="{% url 'book-page' %}">← Kitoblar ro‘yxati</a><h1>{{ book.title }}</h1>
+<div class="panel"><p>Muallif: {% if book.author %}<a href="{% url 'author-detail-page' book.author.pk %}">{{ book.author.name }}</a>{% else %}Tanlanmagan{% endif %}</p><p>Holati: {% if book.published %}Nashr qilingan{% else %}Nashr qilinmagan{% endif %}</p></div>
+<div class="actions"><a class="button" href="{% url 'book-edit-page' book.pk %}">Tahrirlash</a><a class="button secondary" href="{% url 'book-delete-page' book.pk %}">O‘chirish</a></div>
+{% endblock %}

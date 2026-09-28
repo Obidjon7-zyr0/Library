@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block title %}Mualliflar{% endblock %}
+{% block content %}
+<div class="heading"><h1>Mualliflar</h1><a class="button" href="{% url 'author-add-page' %}">+ Muallif qo‘shish</a></div>
+<div class="grid">{% for author in authors %}<article class="card"><span class="badge">{{ author.book_count }} ta kitob</span><h2><a href="{% url 'author-detail-page' author.pk %}">{{ author.name }}</a></h2><a href="{% url 'author-detail-page' author.pk %}">Kitoblarini ko‘rish →</a></article>{% empty %}<div class="empty">Hozircha muallif yo‘q.</div>{% endfor %}</div>
+{% endblock %}
